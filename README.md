@@ -5,7 +5,7 @@ macOS Offensive Tools
 XCode project template for Audio Unit Plugins
 
 ### MigrationToolPayload
-Migration tool plugins
+Migration tool plugin
 
 ### SpecialDelivery
 Installer plugin
