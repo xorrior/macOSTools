@@ -2,7 +2,7 @@
 macOS Offensive Tools
 
 ### AUnit
-XCode project template for Audio Unit Plugins
+Example XCode project for Audio Unit Plugins
 
 ### MigrationToolPayload
 Migration tool plugin
@@ -14,7 +14,7 @@ Installer plugin
 Authentication Plugin
 
 ### dylibinjection
-Source code for dylib injection. Based off of code from Jonathan Levin
+Source code for dylib injection. Based off of code from Jonathan Levin http://newosxbook.com/src.jl?tree=listings&file=inject.c
 
 ### HIDMan
 IOHIDManager keylogger
