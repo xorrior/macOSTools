@@ -20,4 +20,18 @@ Source code for dylib injection. Based off of code from Jonathan Levin http://ne
 IOHIDManager keylogger
 
 ### Script Runners
-JXA and Python in-memory execution in ObjC
+### jxa_runner
+
+Rust library for in-memory JXA execution
+
+Prerequisites
+
+1. [Rust](https://www.rust-lang.org/tools/install)
+
+2. Mythic JXA Payload. Saved to disk
+
+Build Steps
+
+1. Use the `PAYLOAD` and `KEY` environment variables with `cargo build` to generate the lib. KEY will be used as a static XOR key.
+2. `PAYLOAD=apfell.js KEY=SOMEKEY cargo build --release`
+3. Release build is in `target/release/libjxa_runner.dylib` 

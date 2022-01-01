@@ -1,0 +1,21 @@
+cargo-features = ["strip"]
+
+[package]
+name = "jxa_runner"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+[target.'cfg(any(target_os = "macos"))'.dependencies.mach]
+version = "0.1"
+
+[lib]
+crate-type = ["cdylib", "lib"]
+
+[build-dependencies]
+cc = "1.0.72"
+
+[dependencies]
+libc = "*"
+simple-logging = "2.0.2"
+log = "0.4.14"
