@@ -31,7 +31,7 @@ pub extern "C" fn init() {
     let unencrypted_payload = xor_routine(CODE, KEY);
     if cfg!(debug_assertions) {
         log::debug!("Decrypted JXA payload with xor routine and key\n");
-        log::debug!("JXA CODE: {:?}\n", python_code);
+        log::debug!("JXA CODE: {:?}\n", std::str::from_utf8(&unencrypted_payload).unwrap());
     }
     let code_string = std::str::from_utf8(&*unencrypted_payload).unwrap();
     let code_cstring = CString::new(code_string).expect("Couldn't create CString");
