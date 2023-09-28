@@ -6,6 +6,17 @@ version = "0.1.0"
 edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+[target.'cfg(any(target_os = "macos"))'.dependencies.mach]
+version = "0.1"
+
+[lib]
+crate-type = ["cdylib", "lib"]
+name = "pythonrunner"
+path = "src/lib.rs"
+
+[[bin]]
+name = "pythonrunner_bin"
+path = "src/bin.rs"
 
 [dependencies]
 simple-logging = "2.0.2"
